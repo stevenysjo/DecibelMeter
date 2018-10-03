@@ -63,18 +63,34 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="dB Limit" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="koh-sj-bnr">
+                                <rect key="frame" x="156.5" y="189" width="62.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Interval" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xzk-77-zU7">
+                                <rect key="frame" x="159" y="250" width="56.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="0bp-5w-nt0" firstAttribute="top" secondItem="8cP-AB-AIF" secondAttribute="bottom" id="BDb-dI-43t"/>
                             <constraint firstItem="FK9-iZ-6O9" firstAttribute="top" secondItem="A7n-nE-KkX" secondAttribute="bottom" constant="31" id="CGE-HG-dhx"/>
                             <constraint firstItem="0bp-5w-nt0" firstAttribute="height" secondItem="8cP-AB-AIF" secondAttribute="height" id="F8I-6R-B3o"/>
+                            <constraint firstItem="FK9-iZ-6O9" firstAttribute="top" secondItem="Xzk-77-zU7" secondAttribute="bottom" constant="4" id="N38-dj-fok"/>
                             <constraint firstItem="8cP-AB-AIF" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Sc7-fq-0K8"/>
+                            <constraint firstItem="A7n-nE-KkX" firstAttribute="top" secondItem="koh-sj-bnr" secondAttribute="bottom" constant="4" id="TzJ-fO-LQP"/>
                             <constraint firstItem="A7n-nE-KkX" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Vv9-c5-LrT"/>
                             <constraint firstItem="FK9-iZ-6O9" firstAttribute="trailing" secondItem="A7n-nE-KkX" secondAttribute="trailing" id="XwS-OW-Nwc"/>
                             <constraint firstItem="8cP-AB-AIF" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="bLB-sG-yON"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="KCQ-WU-A0R" secondAttribute="bottom" constant="27" id="ego-Yi-aQP"/>
+                            <constraint firstItem="Xzk-77-zU7" firstAttribute="centerX" secondItem="FK9-iZ-6O9" secondAttribute="centerX" id="eol-6k-uRF"/>
                             <constraint firstItem="0bp-5w-nt0" firstAttribute="leading" secondItem="8cP-AB-AIF" secondAttribute="leading" id="jVm-d5-IOi"/>
+                            <constraint firstItem="koh-sj-bnr" firstAttribute="centerX" secondItem="A7n-nE-KkX" secondAttribute="centerX" id="nvV-oE-aOQ"/>
                             <constraint firstItem="0bp-5w-nt0" firstAttribute="trailing" secondItem="8cP-AB-AIF" secondAttribute="trailing" id="pI2-BM-7Fj"/>
                             <constraint firstItem="8cP-AB-AIF" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="ssi-AE-2va"/>
                             <constraint firstItem="FK9-iZ-6O9" firstAttribute="leading" secondItem="A7n-nE-KkX" secondAttribute="leading" id="u9A-ct-mfS"/>
