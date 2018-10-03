@@ -13,13 +13,9 @@ class SoundLevelView: UIView {
     @IBOutlet var coverView: UIView!
     @IBOutlet var maxLabel: UILabel!
     @IBOutlet var titleLabel: UILabel!
+    var interval: Double = 0.2
 
     var width: CGFloat = 0
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        width = self.coverView.frame.width
-    }
     
     func calibrateView() {
         width = self.coverView.frame.width
@@ -28,12 +24,12 @@ class SoundLevelView: UIView {
     
     //value between 0...1
     func updateValue(_ value: CGFloat) {
-        UIView.animate(withDuration: 0.5) {
-            var val = max(value, 0)
-            val = min(value, 1)
-            let const = val * self.width
+        var val = max(value, 0)
+        val = min(value, 1)
+        let const = val * self.width
+        UIView.animate(withDuration: interval) {
             self.coverLeftConstraint.constant = const
-            self.maxLabel.textColor = val > 1 ? .red : .lightGray
+            self.maxLabel.textColor = val >= 1 ? .red : .lightGray
             self.layoutIfNeeded()
         }
     }

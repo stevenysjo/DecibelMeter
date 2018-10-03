@@ -12,7 +12,13 @@ class ViewController: UIViewController {
     @IBOutlet var micButton: UIButton!
     @IBOutlet var soundViewContainer: UIView!
     @IBOutlet var peakSoundViewContainer: UIView!
-    
+    @IBOutlet var limitTextField: UITextField!
+    @IBOutlet var intervalTextField: UITextField!
+
+    let decibelLimit: Double = 120
+    var upperLimit: Double = 120
+    var interval: Double = 0.2
+
     let soundView: SoundLevelView = {
         guard let v = UINib(nibName: "SoundLevelView", bundle: nil).instantiate(withOwner: nil, options: nil).first as? SoundLevelView else {
             return SoundLevelView()
@@ -43,10 +49,18 @@ class ViewController: UIViewController {
         peakSoundViewContainer.addSubview(peakSoundView)
 
         micManager.delegate = self
+        limitTextField.text = "\(upperLimit)"
+        limitTextField.delegate = self
+        
+        intervalTextField.text = "\(interval)"
+        intervalTextField.delegate = self
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        setupIntervals()
+        soundView.calibrateView()
+        peakSoundView.calibrateView()
     }
 
     @IBAction func micTapped() {
@@ -69,6 +83,12 @@ class ViewController: UIViewController {
     func updateView(isRecording: Bool) {
         view.backgroundColor = isRecording ? UIColor(white: 0.3, alpha: 0.5) : .white
     }
+    
+    func setupIntervals() {
+        micManager.interval = interval
+        soundView.interval = interval
+        peakSoundView.interval = interval
+    }
 }
 
 extension ViewController: MicManagerDelegate {
@@ -77,12 +97,51 @@ extension ViewController: MicManagerDelegate {
     }
     
     func avgAudioVolumeResult(_ value: Double) {
-        soundView.titleLabel.text = "Avg    : \(value * 120)"
-        soundView.updateValue(CGFloat(value))
+        let db = value * decibelLimit
+        soundView.titleLabel.text = "Avg    : \(db)"
+        soundView.updateValue(getRatio(from: db))
     }
     
     func peakAudioVolumeResult(_ value: Double) {
-        peakSoundView.titleLabel.text = "Peak   : \(value * 120)"
-        peakSoundView.updateValue(CGFloat(value))
+        let db = value * decibelLimit
+        peakSoundView.titleLabel.text = "Peak   : \(db)"
+        peakSoundView.updateValue(getRatio(from: db))
+    }
+    
+    private func getRatio(from value: Double) -> CGFloat {
+        return CGFloat(value / upperLimit)
+    }
+}
+
+extension ViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        switch textField {
+        case limitTextField:
+            let val: Double
+            if let text = textField.text, let value = Double(text) {
+                val = value
+            } else {
+                val = upperLimit
+            }
+            textField.text = "\(val)"
+            upperLimit = val
+            
+        case intervalTextField:
+            let val: Double
+            if let text = textField.text, let value = Double(text) {
+                val = value
+            } else {
+                val = 0.2
+            }
+            textField.text = "\(val)"
+            interval = val
+        default: break
+        }
+        setupIntervals()
+        if micManager.isAudioEngineRunning {
+            micTapped()
+        }
+        return true
     }
 }

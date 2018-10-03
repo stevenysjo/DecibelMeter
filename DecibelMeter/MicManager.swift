@@ -22,6 +22,7 @@ class MicManager: NSObject {
 
     private var recorder : AVAudioRecorder? = nil
     private var timer: Timer?
+    var interval: Double = 0.2
 
     func getDocumentsDirectory() -> URL {
         let fileManager = FileManager.default
@@ -83,7 +84,7 @@ class MicManager: NSObject {
     
     private func startTimer() {
         timer?.invalidate()
-        timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.getDispersyPercent), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: interval, target: self, selector: #selector(self.getDispersyPercent), userInfo: nil, repeats: true)
         timer?.fire()
     }
     
