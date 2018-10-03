@@ -21,6 +21,12 @@ class SoundLevelView: UIView {
         width = self.coverView.frame.width
     }
     
+    func calibrateView() {
+        width = self.coverView.frame.width
+        updateValue(0)
+    }
+    
+    //value between 0...1
     func updateValue(_ value: CGFloat) {
         UIView.animate(withDuration: 0.5) {
             var val = max(value, 0)
