@@ -27,7 +27,7 @@ class SoundLevelView: UIView {
         var val = max(value, 0)
         val = min(value, 1)
         let const = val * self.width
-        UIView.animate(withDuration: interval) {
+        UIView.animate(withDuration: interval/0.8) {
             self.coverLeftConstraint.constant = const
             self.maxLabel.textColor = val >= 1 ? .red : .lightGray
             self.layoutIfNeeded()
