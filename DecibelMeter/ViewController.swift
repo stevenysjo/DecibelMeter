@@ -16,7 +16,7 @@ class ViewController: UIViewController {
     @IBOutlet var intervalTextField: UITextField!
 
     let decibelLimit: Double = 120
-    var upperLimit: Double = 120
+    var upperLimit: Double = 1200
     var interval: Double = 0.2
 
     let soundView: SoundLevelView = {
@@ -67,6 +67,8 @@ class ViewController: UIViewController {
         if micManager.isAudioEngineRunning {
             self.updateView(isRecording: false)
             micManager.stopRecording()
+            micManager.stopRecording()
+
         } else {
             micManager.checkForPermission { (success) in
                 if success {
