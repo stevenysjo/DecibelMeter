@@ -16,7 +16,7 @@ class ViewController: UIViewController {
     @IBOutlet var intervalTextField: UITextField!
 
     let decibelLimit: Double = 120
-    var upperLimit: Double = 120
+    var upperLimit: Double = 110
     var interval: Double = 0.2
 
     let soundView: SoundLevelView = {
