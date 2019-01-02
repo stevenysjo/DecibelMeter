@@ -67,6 +67,8 @@ class ViewController: UIViewController {
         if micManager.isAudioEngineRunning {
             self.updateView(isRecording: false)
             micManager.stopRecording()
+            micManager.stopRecording()
+
         } else {
             micManager.checkForPermission { (success) in
                 if success {
